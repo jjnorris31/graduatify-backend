@@ -2,7 +2,17 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-require('dotenv').config()
+require('dotenv').config();
+
+var admin = require("firebase-admin");
+var serviceAccount = require("./graduatify-firebase-admin.json");
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+});
+
+console.log({admin});
+
 
 
 var indexRouter = require('./routes/index');
