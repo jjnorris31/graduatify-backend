@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "babel-node -x \".ts\" src/app.ts",
     "babel-node": "babel-node --presets='@babel/preset-env' --ignore='foo|bar|baz'",
-    "dev": "nodemon --exec npm run babel-node -- ./bin/www"
+    "dev": "nodemon --exec babel-node --extensions \".ts\" src/app.ts"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -18,7 +18,10 @@
   "devDependencies": {
     "@babel/core": "^7.13.15",
     "@babel/node": "^7.13.13",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/preset-env": "^7.13.15",
-    "nodemon": "^2.0.7"
+    "@babel/preset-typescript": "^7.13.0",
+    "nodemon": "^2.0.7",
+    "typescript": "^4.2.4"
   }
 }
