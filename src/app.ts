@@ -1,11 +1,11 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-import './database';
-require('dotenv').config();
-import {User} from './models/User'
-import AuthRouter from './routes/auth.routes';
+import './database'
+import AuthRouter from './routes/auth.routes'
+require('@babel/register')({ extensions: ['.js', '.ts'] })
+require('dotenv').config()
+const express = require('express')
+const path = require('path')
+const cookieParser = require('cookie-parser')
+const logger = require('morgan')
 
 var app = express();
 app.use(express.json());
