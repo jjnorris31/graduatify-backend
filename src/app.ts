@@ -2,24 +2,27 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+import './database';
+require('dotenv').config();
+import {User} from './models/User'
+import AuthRouter from './routes/auth.routes';
 
 var app = express();
+app.use(express.json());
 
 app.use(logger('dev'));
-app.use(express.json());
 
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// routes
+app.use('/auth', AuthRouter);
 
-app.listen(3000, () => {
-    console.log('listen at 3000!');
+
+
+app.listen(process.env.PORT, () => {
+    console.log(process.env.PORT);
 })
 
 module.exports = app;
